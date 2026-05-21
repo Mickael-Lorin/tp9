@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ciné-Club - Liste des Films</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: common-navbar}"></div>
+<h1>Liste des films du Ciné-Club</h1>
+
+<p><a th:href="@{/}">← Retour à l'accueil</a></p>
+
+<table>
+    <thead>
+    <tr>
+        <th>Titre</th>
+        <th>Année</th>
+        <th>Genre</th>
+        <th>Durée</th>
+        <th>Réalisateur</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="movie : ${movies}">
+        <td th:text="${movie.title}">Titre du film</td>
+        <td th:text="${movie.releaseYear()}">2026</td>
+        <td th:text="${movie.genre}">Drame / Action</td>
+        <td th:text="${movie.durationMinutes}">120 minutes</td>
+
+        <td th:text="${movie.directorFullName}">Nom Réalisateur</td>
+
+        <td>
+            <a th:href="@{/movies/{id}(id=${movie.id})}" class="btn-detail">
+                Voir le détail
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<p><a th:href="@{/}">Retour à l'accueil</a></p>
+</body>
+</html>

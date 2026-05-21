@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ciné-Club - Détails du Film</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: common-navbar}"></div>
+<div class="container">
+    <!-- 1. Titre -->
+    <h1 class="movie-title" th:text="${movie.title}">Titre du film</h1>
+
+    <div class="meta-info">
+
+        <div class="meta-item">
+            <strong>Année de sortie :</strong>
+            <span th:text="${movie.releaseYear}">2026</span>
+        </div>
+
+        <div class="meta-item">
+            <strong>Genre :</strong>
+            <span th:text="${movie.genre}">Drame / Science-Fiction</span>
+        </div>
+
+        <div class="meta-item">
+            <strong>Durée :</strong>
+            <span th:text="${movie.durationMinutes} + ' minutes'">0 minutes</span>
+        </div>
+
+        <div class="meta-item">
+            <strong>Réalisateur :</strong>
+            <span th:text="${movie.director.firstName} + ' ' + ${movie.director.lastName}">Nom du réalisateur</span>
+        </div>
+    </div>
+
+
+    <h3>Synopsis</h3>
+    <div class="synopsis-box">
+        <p th:text="${movie.synopsis}">Le résumé détaillé du film s'affichera ici...</p>
+    </div>
+
+    <hr>
+
+    <p><a th:href="@{/movies}" class="btn-back">← Retour à la liste des films</a></p>
+</div>
+
+</body>
+</html>

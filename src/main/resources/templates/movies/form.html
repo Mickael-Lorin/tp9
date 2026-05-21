@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ciné-Club - Ajouter un film</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    </head>
+<body>
+<div th:replace="~{fragments/navbar :: common-navbar}"></div>
+    <div class="container">
+        <h2 class="movie-title">Ajouter un nouveau film</h2>
+
+        <div th:if="${error}" class="alert alert-danger" th:text="${error}">Une erreur est survenue.</div>
+
+    <form th:action="@{/movies/new}" th:object="${movieForm}" method="post">
+        <div class="form-group">
+            <label for="title">Titre du film</label>
+            <input type="text" id="title" th:field="*{title}" placeholder="Titre du film" required>
+            <div class="error-message" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Erreur titre</div>
+        </div>
+        <div class="form-group">
+            <label for="releaseYear">Année de sortie</label>
+            <input type="number" id="releaseYear" th:field="*{releaseYear}" placeholder="Année de sortie" required>
+            <div class="error-message" th:if="${#fields.hasErrors('releaseYear')}" th:errors="*{releaseYear}">Erreur Année</div>
+        </div>
+        <div class="form-group">
+            <label for="duration">Durée (en minutes)</label>
+            <input type="number" id="duration" th:field="*{durationMinutes}" placeholder="Durée du film en minutes" required>
+            <div class="error-message" th:if="${#fields.hasErrors('durationMinutes')}" th:errors="*{durationMinutes}">Erreur sur la durée</div>
+        </div>
+        <div class="form-group">
+            <label for="genre">Genre</label>
+            <input type="text" id="genre" th:field="*{genre}" placeholder="Ex: Science-Fiction" required>
+            <div class="error-message" th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}">Erreur genre</div>
+        </div>
+        <div class="form-group">
+            <label for="directorId">Réalisateur</label>
+            <select id="directorId" th:field="*{directorId}" required>
+                <option value="">Choisir un réalisateur</option>
+                <option th:each="director : ${directors}"
+                        th:value="${director.id}"
+                        th:text="${director.firstName} + ' ' + ${director.lastName}">
+                    Quentin Tarantino
+                </option>
+            </select>
+            <div class="error-messasge" th:if="${#fields.hasErrors('directorId')}" th:errors="*{directorId}"></div>
+        </div>
+        <div class="form-group">
+            <label for="synopsis">Synopsis</label>
+            <textarea id="synopsis" th:field="*{synopsis}" rows="5" placeholder="Résumé du film"></textarea>
+            <div class="error-message" th:if="${#fields.hasErrors('synopsis')}" th:errors="*{synopsis}">Erreur synopsis</div>
+        </div>
+        <div class="form-actions">
+            <a th:href="@{/movies}" class="btn-back">Annuler</a>
+            <button type="submit" class="btn-submit"> Enregistrer le film</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

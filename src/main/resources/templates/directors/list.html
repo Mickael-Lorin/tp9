@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1> Liste des réalisateurs</h1>
+<p> <a th:href="@{/}"><-Retour à l'accueil</a></p>
+<table>
+    <thead>
+        <tr>
+            <th>Prénom</th>
+        <th>Nom</th>
+        <th>Nationalité</th>
+        <th>Date de naissance</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <div th:replace="~{fragments/navbar :: common-navbar}"></div>
+        <tr th:each="director : ${directors}">
+            <td th:text="${director.firstName}"></td>
+            <td th:text="${director.lastName}"></td>
+            <td th:text="${director.nationality}"></td>
+            <td th:text="${director.birthDate}"></td>
+        </tr>
+    </tbody>
+</table>
+<p><a th:href="@{/}">Retour à l'accueil</a></p>
+</body>
+</html>

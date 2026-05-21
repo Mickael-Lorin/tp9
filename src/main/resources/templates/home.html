@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ciné Club</title>
+
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: common-navbar}"></div>
+  <h1>Bienvenue au Ciné-Club</h1>
+  <p>Explorez notre catalogue :</p>
+  <ul>
+    <li><a th:href="@{/movies}">Voir la liste des films</a></li>
+    <li><a th:href="@{/directors}">Voir la liste des réalisateurs</a></li>
+      <li><a th:href="@{/logout}" style="color: #e74c3c; font-weight: bold;">Se déconnecter</a></li>
+  </ul>
+</body>
+</html>
